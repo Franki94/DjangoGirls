@@ -8,12 +8,15 @@
 </head>
 <body>
     <h1>Django Example Girls</h1>
-    
+
     <p>Hola Soy un Nuevo parrafo del Blog</p>
 
+    {%for post in posts%}
     <section>
-        <h1>FirstBlog</h1>
-        <p>Content of FirstBlog</p>
+        <h1>Title: <a href="">{{post.title}}</a></h1>
+        <p>{{post.text|linebreaksbr}}</p>
+        <p>{{post.published_date}}</p>
     </section>
+    {% endfor %}
 </body>
 </html>

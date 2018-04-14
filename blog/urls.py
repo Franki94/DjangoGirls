@@ -19,6 +19,6 @@ from blog import views
 #path(route, view, kwargs=None, name=None)
 urlpatterns = [
     # re_path(r'^', views.post_list, name='post_list'),#Cuando queremos usar expresiones regulares
-    path('', views.post_list, name='post_list'),
+    path('', views.post_list, name='post_list'),#en la url vacia, inserta el post_list del view
 
 ]
