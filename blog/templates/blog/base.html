@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DjangoGirl Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="nav header-Blog ">
+        <header class="card-body">
+            <h1 class="card-title">
+                <a href="{% url 'post_list' %}">Django Example Girls</a>
+            </h1>
+            
+            <p>Hola Soy un Nuevo parrafo del Blog</p>
+        </header>
+    </div>
+    
+    <article class="container">
+        {% block content %}
+        {% endblock %}
+    </article>
+</body>
+</html>

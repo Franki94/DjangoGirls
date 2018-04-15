@@ -2,13 +2,14 @@
 
 {% block content %}
 
-    {%for post in posts%}
     <section class="card-body">
+
+        {% if post.published_date %}
+            <p class="date">{{ post.published_date}}</p>
+        {% endif %}
         <!-- 'post_detail => es un view nuevo '-->
-        <h1>Title: <a href="{% url 'post_detail' postId=post.pk %}">{{post.title}}</a></h1>
+        <h1>Title: {{post.title}}</a></h1>
         <p>{{post.text|linebreaksbr}}</p>
-        <p>{{post.published_date}}</p>    
     </section>
-    {% endfor %}
 
 {% endblock %}
