@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/' #para el login --- segun la guia redirecciona a la pagina de primer nivel
 
 # Application definition
 

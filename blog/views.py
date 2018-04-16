@@ -7,6 +7,9 @@ from django.utils import timezone #para implementar la hora
 from django.shortcuts import redirect
 
 from .forms import PostForm
+
+from django.contrib.auth.decorators import login_required #para añadir el decorador y restringir el acceso
+
 # Create your views here.
 #Esta primera parte, indica la direccion del html
 # def post_list(request):
@@ -20,7 +23,7 @@ def post_list(request):
 def post_detail(request, postId):
         post = get_object_or_404(Post, id = postId)
         return render(request, 'blog/post_detail.html', {'post' : post})
-
+@login_required
 def post_new(request):
         if request.method == 'POST':
                 form = PostForm(request.POST)
@@ -33,7 +36,7 @@ def post_new(request):
                 form = PostForm()
         return render(request, 'blog/post_edit.html', {'form':form})
 
-
+@login_required
 def post_edit(request, postId):
         post = get_object_or_404(Post, id = postId)#id se refiere al id del modelo
         if request.method == 'POST':
@@ -47,17 +50,18 @@ def post_edit(request, postId):
                 form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})        
 
-
+@login_required
 def post_draft_list(request):
         posts = Post.objects.filter(published_date__isnull = True).order_by('created_date')
         return render(request, 'blog/post_draft_list.html', {'posts':posts})
 
-
+@login_required
 def post_publish(request, postId):
         post = get_object_or_404(Post, id = postId)
         post.publish()
         return redirect('post_detail', postId= post.id)
-
+        
+@login_required
 def post_remove(request, postId):
         post = get_object_or_404(Post, id = postId)
         post.delete()
