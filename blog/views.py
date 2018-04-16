@@ -14,7 +14,7 @@ from .forms import PostForm
 
 #asi enviamos un queryset al html
 def post_list(request):
-        posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('published_date')
+        posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')#el - indica que sera ordenado de forma descendiente
         return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, postId):
@@ -27,7 +27,6 @@ def post_new(request):
                 if form.is_valid():
                         Post = form.save(commit=False)
                         Post.author = request.user
-                        Post.published_date = timezone.now()
                         Post.save()
                         return redirect('post_detail', postId = Post.id)
         else:
@@ -47,3 +46,14 @@ def post_edit(request, postId):
         else:
                 form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})        
+
+
+def post_draft_list(request):
+        posts = Post.objects.filter(published_date__isnull = True).order_by('created_date')
+        return render(request, 'blog/post_draft_list.html', {'posts':posts})
+
+
+def post_publish(request, postId):
+        post = get_object_or_404(Post, id = postId)
+        post.publish()
+        return redirect('post_detail', postId= post.id)

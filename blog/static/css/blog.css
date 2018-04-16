@@ -10,3 +10,20 @@ h1, a {
 {
     background-color:  #7BF9E2;
 }
+
+.date {
+    float: right;
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+
+
+.top-menu{
+    color: #ffffff;
+    float: right;
+    font-size: 30pt;
+    margin-right: 20px;
+}

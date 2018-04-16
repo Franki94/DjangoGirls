@@ -3,12 +3,12 @@
 {% block content %}
 
     {%for post in posts%}
-    <section class="card-body">
+    <article class="card-body">
         <!-- 'post_detail => es un view nuevo '-->
         <h1>Title: <a href="{% url 'post_detail' postId=post.pk %}">{{post.title}}</a></h1>
         <p>{{post.text|linebreaksbr}}</p>
         <p>{{post.published_date}}</p>    
-    </section>
+    </article>
     {% endfor %}
 
 {% endblock %}

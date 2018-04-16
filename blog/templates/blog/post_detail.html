@@ -2,10 +2,12 @@
 
 {% block content %}
 
-    <section class="card-body">
+    <article class="card-body">
 
         {% if post.published_date %}
             <p class="date">{{ post.published_date}}</p>
+        {% else %}
+            <a class="btn btn-sucess" href="{% url 'post_publish' postId=post.id %}">Publish</a>
         {% endif %}
 
         <a class="btn btn-default" href="{% url 'post_edit' postId=post.pk %}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
@@ -13,6 +15,6 @@
         <!-- 'post_detail => es un view nuevo '-->
         <h1>Title: {{post.title}}</a></h1>
         <p>{{post.text|linebreaksbr}}</p>
-    </section>
+    </article>
 
 {% endblock %}
