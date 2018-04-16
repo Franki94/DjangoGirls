@@ -57,3 +57,8 @@ def post_publish(request, postId):
         post = get_object_or_404(Post, id = postId)
         post.publish()
         return redirect('post_detail', postId= post.id)
+
+def post_remove(request, postId):
+        post = get_object_or_404(Post, id = postId)
+        post.delete()
+        return redirect('post_list')

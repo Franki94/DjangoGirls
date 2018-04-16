@@ -12,6 +12,8 @@
 
         <a class="btn btn-default" href="{% url 'post_edit' postId=post.pk %}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
 
+        <a class="btn btn-default" href="{% url 'post_remove' postId=post.pk %}"><span class="glyphicon glyphicon-remove">Remove</span></a>
+
         <!-- 'post_detail => es un view nuevo '-->
         <h1>Title: {{post.title}}</a></h1>
         <p>{{post.text|linebreaksbr}}</p>
