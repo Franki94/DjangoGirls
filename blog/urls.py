@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.post_list, name='post_list'),#en la url vacia, inserta el post_list del view
     # url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
     path('post/<int:postId>/', views.post_detail, name='post_detail'),
+    #url(r'^post/new/$', views.post_new, name='post_new'),
+    path('post/new/', views.post_new, name='post_new'),
+    path('post/<int:postId>/edit/', views.post_edit, name='post_edit'),
 ]
