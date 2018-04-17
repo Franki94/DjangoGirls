@@ -8,6 +8,10 @@
         <h1>Title: <a href="{% url 'post_detail' postId=post.pk %}">{{post.title}}</a></h1>
         <p>{{post.text|linebreaksbr}}</p>
         <p>{{post.published_date}}</p>    
+
+        <!--<strong><a href="{% url 'post_detail' postId=post.pk %}">Comments: {{post.comments.count}}</a></strong>-->
+        <strong><a href="{% url 'post_detail' postId=post.pk %}">Comments: {{post.approved_comments.count}}</a></strong>
+
     </article>
     {% endfor %}
 

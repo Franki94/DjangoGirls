@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 
-from .models import Post #Para importar el modelo Post
+from .models import Post, Comment #Para importar el modelo Post
 
 from django.utils import timezone #para implementar la hora
 
 from django.shortcuts import redirect
 
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 from django.contrib.auth.decorators import login_required #para añadir el decorador y restringir el acceso
 
@@ -66,3 +66,28 @@ def post_remove(request, postId):
         post = get_object_or_404(Post, id = postId)
         post.delete()
         return redirect('post_list')
+
+def add_comment_to_post(request, postId):
+        post = get_object_or_404(Post, id=postId)
+        if request.method == "POST":
+                form = CommentForm(request.POST)
+                if form.is_valid():                
+                        comment = form.save(commit=False)
+                        comment.post = post
+                        comment.save()
+                        return redirect('post_detail', postId=post.id)
+        else:
+                form = CommentForm()
+        return render(request, 'blog/add_comment_to_post.html', {'form': form})
+
+@login_required
+def comment_approve(request, commentId):
+        comment = get_object_or_404(Comment, id = commentId )
+        comment.approve()
+        return redirect('post_detail', postId=comment.post.id)
+        
+@login_required
+def comment_remove(request, commentId):
+        comment = get_object_or_404(Comment, id = commentId)
+        comment.delete()
+        return redirect('post_detail', postId = comment.post.id)

@@ -30,4 +30,12 @@ urlpatterns = [
 
     path('post/<int:postId>/publish/', views.post_publish, name='post_publish'),
     path('post/<int:postId>/remove/', views.post_remove, name='post_remove'),
+
+    #path para los comentarios
+    #url(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
+    path('post/<int:postId>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    #url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
+    #url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+    path('comment/<int:commentId>/approve/', views.comment_approve, name='comment_approve'),
+    path('comment/<int:commentId>/remove/', views.comment_remove, name='comment_remove'),
 ]
